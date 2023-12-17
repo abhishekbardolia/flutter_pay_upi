@@ -1,0 +1,139 @@
+
+# flutter_pay_upi (iOS version coming soon)
+
+<p align="center">
+  <a href="https://twitter.com/abhibardolia94">
+    <img src="https://img.shields.io/badge/twitter-@abhibardolia94-blue.svg?style=flat" alt="Twitter">
+  </a>
+    <a href="https://www.linkedin.com/in/abhishek-bardolia-202233104/">
+    <img src="https://img.shields.io/badge/linkedin-@abhibardolia94-blue.svg?style=flat" alt="Twitter">
+  </a>
+  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-purple.svg" alt="License: MIT"></a>
+</p>
+
+This plugin helps you add UPI (Unified Payments Interface) options to your Android and iOS apps. With this plugin, you can enable transactions to any business UPI ID within your app.
+
+To see exactly how to use this plugin, check out the example in the "Example" section or visit the plugin's [Github](https://github.com/abhishekbardolia/flutter_pay_upi.git) repository.
+
+[Check the Supported apps here.](#supported-apps)
+
+# Screenshots
+
+![Visible Screen](https://github.com/abhishekbardolia/flutter_pay_upi/assets/21007272/dddb4afd-6874-41f1-a58a-070de6b1aabc)
+
+![Cancelled Error](https://github.com/abhishekbardolia/flutter_pay_upi/assets/21007272/827a5be1-ccb7-4304-ac05-46298f5d6c1d)
+
+
+
+![Successful Dialog](https://github.com/abhishekbardolia/flutter_pay_upi/assets/21007272/6629a046-c8ab-448a-b2bd-e57302a9e20d)
+
+# Important Note
+
+Apps like Google Pay, PhonePe, and Paytm might not be able to complete your transaction right now. They could show errors like "Maximum limit exceeded" or "Risk threshold exceeded." This could happen if you're trying to send money to someone's personal UPI (Unified Payments Interface) account. Another reason could be that you've reached the maximum number of transactions allowed for the day. In this case, you may need to wait until tomorrow to try the same transaction again.
+
+*Note:* Remember to use only business UPI accounts. You can't send money to personal UPI accounts. Stick to business accounts for your transactions.
+
+# Getting started
+
+Add the plugin package to the `pubspec.yaml` file in your project:
+
+```yaml
+dependencies:
+  flutter_pay_upi: ^0.0.1
+```
+
+Install the new dependency:
+
+```sh
+flutter pub get
+```
+# Android
+
+To get all the Upi apps:
+
+```getupi
+    List<UpiApp> androidUpiList = await FlutterPayUpiManager.getListOfAllUpiApps();
+```
+
+# Start Payment
+
+```dart
+    FlutterPayUpiManager.startPayment(paymentApp: upiApp.app!,
+        payeeVpa: payeeVpa!,
+        payeeName: payeeName!,
+        transactionId: transactionId!,
+        payeeMerchantCode: payeeMerchantCode!,
+        description: description!,
+        amount: amount!,
+        response: (UpiResponse response){
+            // TODO: add your success logic here
+        },
+        error: (e){
+            // TODO: add your exception logic here
+        });
+
+```
+
+## Supported Apps
+* Amazon Pay
+* BHIM
+* Google Pay
+* Paytm
+* PhonePe
+* Axis Bank
+* Bank of India
+* Cent Bank
+* Corporation Bank UPI
+* CSB Bank
+* Digi Bank
+* Equitas UPI
+* Freecharge
+* iMobile ICICI
+* HSBC UPI
+* Indus Pay
+* Karnatak UPI
+* Kotak Bank
+* HDFC Bank
+* PNB Bank
+* PSB
+* RBL
+* SBI Pay
+* UCO Bank
+* Yes Bank
+* Bank of Baroda
+* Airtel UPI
+* Cred UPI
+
+# Reference
+
+Reference took from [EasyUpiPayment-Android](https://github.com/PatilShreyas/EasyUpiPayment-Android) by shreyas Patil.
+
+# This code was helpful to you
+
+<a href="https://www.buymeacoffee.com/dev.abhibardolia" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
+
+
+# License
+
+    MIT License
+
+    Copyright (c) 2023 Abhishek Bardolia
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+    
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+    
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
