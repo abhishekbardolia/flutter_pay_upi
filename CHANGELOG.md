@@ -1,4 +1,3 @@
-## 0.0.1
+## 0.0.2
 
-* TODO: Describe initial release.
-- This library will only works in Android as android version is done.
+* fixed some analyser issues.
