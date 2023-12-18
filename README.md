@@ -41,7 +41,7 @@ Add the plugin package to the `pubspec.yaml` file in your project:
 
 ```yaml
 dependencies:
-  flutter_pay_upi: ^0.0.1
+  flutter_pay_upi: ^0.1.0
 ```
 
 Install the new dependency:
@@ -61,18 +61,18 @@ To get all the Upi apps:
 
 ```dart
     FlutterPayUpiManager.startPayment(paymentApp: upiApp.app!,
-payeeVpa: payeeVpa!,
-payeeName: payeeName!,
-transactionId: transactionId!,
-payeeMerchantCode: payeeMerchantCode!,
-description: description!,
-amount: amount!,
-response: (UpiResponse response){
-// TODO: add your success logic here
-},
-error: (e){
-// TODO: add your exception logic here
-});
+      payeeVpa: payeeVpa!,
+      payeeName: payeeName!,
+      transactionId: transactionId!,
+      payeeMerchantCode: payeeMerchantCode!,
+      description: description!,
+      amount: amount!,
+      response: (UpiResponse response){
+        // TODO: add your success logic here
+      },
+      error: (e){
+        // TODO: add your exception logic here
+      });
 
 ```
 
