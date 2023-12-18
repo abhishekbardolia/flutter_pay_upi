@@ -18,14 +18,11 @@ To see exactly how to use this plugin, check out the example in the "Example" se
 [Check the Supported apps here.](#supported-apps)
 
 # Screenshots
+<img src="https://github.com/abhishekbardolia/flutter_pay_upi/assets/21007272/1f444519-6aa1-4b85-b835-05cc1bb61ac4" width="200" />
 
-![Visible Screen](https://github.com/abhishekbardolia/flutter_pay_upi/assets/21007272/1f444519-6aa1-4b85-b835-05cc1bb61ac4)
+<img src="https://github.com/abhishekbardolia/flutter_pay_upi/assets/21007272/bc0be994-9c65-46d5-9e67-16e122c6be61" width="200" />
 
-![Cancelled Error](https://github.com/abhishekbardolia/flutter_pay_upi/assets/21007272/bc0be994-9c65-46d5-9e67-16e122c6be61)
-
-
-
-![Successful Dialog](https://github.com/abhishekbardolia/flutter_pay_upi/assets/21007272/6629a046-c8ab-448a-b2bd-e57302a9e20d)
+<img src="https://github.com/abhishekbardolia/flutter_pay_upi/assets/21007272/6629a046-c8ab-448a-b2bd-e57302a9e20d" width="200" />
 
 # Important Note
 
