@@ -13,6 +13,7 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'com.vanniktech:gradle-maven-publish-plugin:0.16.0'
         classpath("org.jetbrains.dokka:dokka-gradle-plugin:1.4.30")
+
     }
 }
 
@@ -20,8 +21,11 @@ allprojects {
     repositories {
         google()
         mavenCentral()
+        maven { url "https://jitpack.io" }
     }
 }
+
+
 
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
@@ -54,7 +58,7 @@ android {
     dependencies {
         testImplementation 'org.jetbrains.kotlin:kotlin-test'
         testImplementation 'org.mockito:mockito-core:5.0.0'
-        implementation project(path: ':EasyUpiPayment')
+        api 'dev.shreyaspatil.EasyUpiPayment:EasyUpiPayment:3.0.3'
     }
 
     testOptions {

@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_pay_upi/flutter_pay_upi_manager.dart';
-import 'package:flutter_pay_upi/model/request_parameters.dart';
 import 'package:flutter_pay_upi/model/upi_response.dart';
-import 'package:flutter_pay_upi/service/flutter_native_upi.dart';
 import 'package:flutter_pay_upi/utils/widget/upi_app_list.dart';
-import 'package:flutter_pay_upi/utils/exception.dart';
-
 
 class FlutterPayUPI extends StatefulWidget {
   const FlutterPayUPI({super.key});
@@ -42,10 +38,7 @@ class _FlutterPayUPIState extends State<FlutterPayUPI> {
         key: _formKey,
         child: SingleChildScrollView(
           child: Container(
-            height: MediaQuery
-                .of(context)
-                .size
-                .height,
+            height: MediaQuery.of(context).size.height,
             padding: EdgeInsets.all(6.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -56,7 +49,7 @@ class _FlutterPayUPIState extends State<FlutterPayUPI> {
                 buildTextField("Payee Name", (value) => payeeName = value),
                 SizedBox(height: 8),
                 buildTextField("Payee Merchant Code",
-                        (value) => payeeMerchantCode = value),
+                    (value) => payeeMerchantCode = value),
                 SizedBox(height: 8),
                 buildTextField(
                     "Transaction ID", (value) => transactionId = value),
@@ -71,20 +64,20 @@ class _FlutterPayUPIState extends State<FlutterPayUPI> {
                 Expanded(
                   child: UPIAppList(onClick: (upiApp) async {
                     if (_formKey.currentState!.validate()) {
-                      FlutterPayUpiManager.startPayment(paymentApp: upiApp.app!,
+                      FlutterPayUpiManager.startPayment(
+                          paymentApp: upiApp.app!,
                           payeeVpa: payeeVpa!,
                           payeeName: payeeName!,
                           transactionId: transactionId!,
                           payeeMerchantCode: payeeMerchantCode!,
                           description: description!,
                           amount: amount!,
-                          response: (UpiResponse response){
+                          response: (UpiResponse response) {
                             _showTransactionDetailsDialog(response);
                           },
-                          error: (e){
+                          error: (e) {
                             _showRoundedDialog(context, e.toString());
                           });
-
                     }
                   }), // UPIAppList takes the available height
                 ),
@@ -219,6 +212,4 @@ class _FlutterPayUPIState extends State<FlutterPayUPI> {
       ),
     );
   }
-
-
 }

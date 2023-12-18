@@ -1,10 +1,8 @@
-
 import 'package:flutter/services.dart';
 import 'package:flutter_pay_upi/model/request_parameters.dart';
 import 'package:flutter_pay_upi/utils/exception.dart';
 import '../model/upi_app_model.dart';
 import '../model/upi_response.dart';
-
 
 class FlutterNativeUpi {
   final MethodChannel _channel;
@@ -21,15 +19,16 @@ class FlutterNativeUpi {
         'pn': upiRequestParams.payeeName,
         'mc': upiRequestParams.payeeMerchantCode,
         'tr': upiRequestParams.transactionId,
-        'trref': upiRequestParams.transactionRefId??upiRequestParams.transactionId,
-        'tn': upiRequestParams.description??upiRequestParams.transactionId,
+        'trref':
+            upiRequestParams.transactionRefId ?? upiRequestParams.transactionId,
+        'tn': upiRequestParams.description ?? upiRequestParams.transactionId,
         'am': makeDecimal(upiRequestParams.amount!),
-        'cu': upiRequestParams.currency??"INR",
+        'cu': upiRequestParams.currency ?? "INR",
         'url': "",
       });
       if (response != null && response != "User Cancelled transaction") {
         UpiResponse upiResponse = UpiResponse.fromResponseString(response);
-        if(upiResponse.status=="Failure"){
+        if (upiResponse.status == "Failure") {
           throw UpiException.fromException(
             PlatformException(
               code: "Failure",
@@ -58,8 +57,8 @@ class FlutterNativeUpi {
       }
     } on PlatformException catch (e) {
       throw UpiException.fromException(e);
-    }catch(e){
-      if((e as UpiException).type==UpiExceptionType.cancelledException){
+    } catch (e) {
+      if ((e as UpiException).type == UpiExceptionType.cancelledException) {
         throw UpiException.fromException(
           PlatformException(
             code: "Cancelled",
@@ -67,7 +66,7 @@ class FlutterNativeUpi {
             message: 'Transaction cancelled',
           ),
         );
-      }else {
+      } else {
         throw UpiException(
           type: UpiExceptionType.unknownException,
           message: "Something error",
@@ -76,7 +75,6 @@ class FlutterNativeUpi {
         );
       }
     }
-
   }
 
   Future<List<UpiApp>> getAllUpiApps() async {
@@ -84,34 +82,35 @@ class FlutterNativeUpi {
     List<UpiApp> upiIndiaApps = [];
     apps?.forEach((Map app) {
       if (app['packageName'] == "in.org.npci.upiapp" ||
-          app['packageName'] == "com.google.android.apps.nbu.paisa.user" ||
-          app['packageName'] == "com.phonepe.app" ||
-          app['packageName'] == "in.amazon.mShop.android.shopping" ||
-          app['packageName'] == "net.one97.paytm" ||
-          app['packageName'] == "com.freecharge.android" ||
-          app['packageName'] == "com.axis.mobile" ||
-          app['packageName'] == "com.infrasofttech.centralbankupi" ||
-          app['packageName'] == "com.infra.boiupi" ||
-          app['packageName'] == "com.lcode.corpupi" ||
-          app['packageName'] == "com.lcode.csbupi" ||
-          app['packageName'] == "com.dbs.in.digitalbank" ||
-          app['packageName'] == "com.equitasbank.upi" ||
-          app['packageName'] == "com.mgs.hsbcupi" ||
-          app['packageName'] == "com.csam.icici.bank.imobile" ||
-          app['packageName'] == "com.lcode.smartz" ||
-          app['packageName'] == "com.mgs.induspsp" ||
-          app['packageName'] == "com.msf.kbank.mobile" ||
-          app['packageName'] == "com.hdfcbank.payzapp" ||
-          app['packageName'] == "com.Version1" ||
-          app['packageName'] == "com.psb.omniretail" ||
-          app['packageName'] == "com.rblbank.mobank" ||
-          app['packageName'] == "com.lcode.ucoupi" ||
-          app['packageName'] == "com.ultracash.payment.customer" ||
-          app['packageName'] == "com.YesBank" ||
-          app['packageName'] == "com.bankofbaroda.upi" ||
-          app['packageName'] == "com.myairtelapp" ||
-          app['packageName'] == "com.dreamplug.androidapp" ||
-          app['packageName'] == "com.sbi.upi") {
+              app['packageName'] == "com.google.android.apps.nbu.paisa.user" ||
+              app['packageName'] == "com.phonepe.app" ||
+              app['packageName'] == "in.amazon.mShop.android.shopping" ||
+              app['packageName'] == "net.one97.paytm"
+          // app['packageName'] == "com.freecharge.android" ||
+          // app['packageName'] == "com.axis.mobile" ||
+          // app['packageName'] == "com.infrasofttech.centralbankupi" ||
+          // app['packageName'] == "com.infra.boiupi" ||
+          // app['packageName'] == "com.lcode.corpupi" ||
+          // app['packageName'] == "com.lcode.csbupi" ||
+          // app['packageName'] == "com.dbs.in.digitalbank" ||
+          // app['packageName'] == "com.equitasbank.upi" ||
+          // app['packageName'] == "com.mgs.hsbcupi" ||
+          // app['packageName'] == "com.csam.icici.bank.imobile" ||
+          // app['packageName'] == "com.lcode.smartz" ||
+          // app['packageName'] == "com.mgs.induspsp" ||
+          // app['packageName'] == "com.msf.kbank.mobile" ||
+          // app['packageName'] == "com.hdfcbank.payzapp" ||
+          // app['packageName'] == "com.Version1" ||
+          // app['packageName'] == "com.psb.omniretail" ||
+          // app['packageName'] == "com.rblbank.mobank" ||
+          // app['packageName'] == "com.lcode.ucoupi" ||
+          // app['packageName'] == "com.ultracash.payment.customer" ||
+          // app['packageName'] == "com.YesBank" ||
+          // app['packageName'] == "com.bankofbaroda.upi" ||
+          // app['packageName'] == "com.myairtelapp" ||
+          // app['packageName'] == "com.dreamplug.androidapp" ||
+          // app['packageName'] == "com.sbi.upi"
+          ) {
         // || app['packageName']== "com.whatsapp"
         // || app['packageName']== "com.whatsapp.w4b") {
         upiIndiaApps.add(UpiApp.fromMap(Map<String, dynamic>.from(app)));

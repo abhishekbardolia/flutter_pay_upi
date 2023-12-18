@@ -19,9 +19,9 @@ To see exactly how to use this plugin, check out the example in the "Example" se
 
 # Screenshots
 
-![Visible Screen](https://github.com/abhishekbardolia/flutter_pay_upi/assets/21007272/dddb4afd-6874-41f1-a58a-070de6b1aabc)
+![Visible Screen](https://github.com/abhishekbardolia/flutter_pay_upi/assets/21007272/1f444519-6aa1-4b85-b835-05cc1bb61ac4)
 
-![Cancelled Error](https://github.com/abhishekbardolia/flutter_pay_upi/assets/21007272/827a5be1-ccb7-4304-ac05-46298f5d6c1d)
+![Cancelled Error](https://github.com/abhishekbardolia/flutter_pay_upi/assets/21007272/bc0be994-9c65-46d5-9e67-16e122c6be61)
 
 
 
@@ -32,6 +32,11 @@ To see exactly how to use this plugin, check out the example in the "Example" se
 Apps like Google Pay, PhonePe, and Paytm might not be able to complete your transaction right now. They could show errors like "Maximum limit exceeded" or "Risk threshold exceeded." This could happen if you're trying to send money to someone's personal UPI (Unified Payments Interface) account. Another reason could be that you've reached the maximum number of transactions allowed for the day. In this case, you may need to wait until tomorrow to try the same transaction again.
 
 *Note:* Remember to use only business UPI accounts. You can't send money to personal UPI accounts. Stick to business accounts for your transactions.
+
+# System requirements
+* sdk: '>=3.1.5 <4.0.0'
+* flutter: >=3.3.0
+* Android: min sdk 19
 
 # Getting started
 
@@ -80,29 +85,7 @@ To get all the Upi apps:
 * Google Pay
 * Paytm
 * PhonePe
-* Axis Bank
-* Bank of India
-* Cent Bank
-* Corporation Bank UPI
-* CSB Bank
-* Digi Bank
-* Equitas UPI
-* Freecharge
-* iMobile ICICI
-* HSBC UPI
-* Indus Pay
-* Karnatak UPI
-* Kotak Bank
-* HDFC Bank
-* PNB Bank
-* PSB
-* RBL
-* SBI Pay
-* UCO Bank
-* Yes Bank
-* Bank of Baroda
-* Airtel UPI
-* Cred UPI
+
 
 # Reference
 
@@ -136,4 +119,3 @@ Reference took from [EasyUpiPayment-Android](https://github.com/PatilShreyas/Eas
     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
-

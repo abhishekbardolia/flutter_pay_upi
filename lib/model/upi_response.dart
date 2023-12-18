@@ -57,7 +57,10 @@ class UpiResponseBuilder {
   }
 
   String? _getValue(String? s) {
-    if (s == null || s.isEmpty || s.toLowerCase() == 'null' || s.toLowerCase() == 'undefined') {
+    if (s == null ||
+        s.isEmpty ||
+        s.toLowerCase() == 'null' ||
+        s.toLowerCase() == 'undefined') {
       return null;
     } else {
       return s;
@@ -68,8 +71,6 @@ class UpiResponseBuilder {
     return UpiResponse._builder(this);
   }
 }
-
-
 
 class UpiPaymentStatus {
   static const String SUCCESS = 'success';

@@ -39,7 +39,6 @@ class UPIRequestBuilder {
     _upi.transactionId = transactionId;
   }
 
-
   void setTransactionRefId(String? transactionRefId) {
     _upi.transactionRefId = transactionRefId;
   }

@@ -10,12 +10,11 @@ import 'model/upi_app_model.dart';
 import 'model/upi_response.dart';
 
 class FlutterPayUpiManager {
-  static Future<List<UpiApp>> getListOfAllUpiApps() async{
-    if(Platform.isAndroid){
+  static Future<List<UpiApp>> getListOfAllUpiApps() async {
+    if (Platform.isAndroid) {
       return await GetUpiAppsAndroid().getUpiApps();
     }
     return [];
-
   }
 
   static void startPayment({
@@ -30,39 +29,35 @@ class FlutterPayUpiManager {
     String? currency,
     required Function(UpiResponse) response,
     required Function(String) error,
-  }) async{
+  }) async {
     UPIRequestParameters upiRequestParams =
-    UPIRequestParameters.builder((upiRequestBuilder) {
+        UPIRequestParameters.builder((upiRequestBuilder) {
       upiRequestBuilder
         ..setPaymentApp(paymentApp)
         ..setPayeeVpa(payeeVpa)
         ..setPayeeName(payeeName)
         ..setPayeeMerchantCode(payeeMerchantCode)
         ..setTransactionId(transactionId)
-        ..setTransactionRefId(transactionRefId??transactionId)
-        ..setDescription(description.isNotEmpty?description:transactionId)
+        ..setTransactionRefId(transactionRefId ?? transactionId)
+        ..setDescription(description.isNotEmpty ? description : transactionId)
         ..setAmount(amount)
-        ..setCurrency(currency??"INR");
-
-
+        ..setCurrency(currency ?? "INR");
     });
     try {
-      UpiResponse upiInstance = await FlutterNativeUpi(
-          const MethodChannel('flutter_pay_upi'))
-          .initiateTransaction(upiRequestParams);
+      UpiResponse upiInstance =
+          await FlutterNativeUpi(const MethodChannel('flutter_pay_upi'))
+              .initiateTransaction(upiRequestParams);
       response(upiInstance);
       // _showTransactionDetailsDialog(upiInstance);
-    }on PlatformException catch(e){
+    } on PlatformException catch (e) {
       error(e.message.toString());
-
-    }catch(e){
-      if(e is UpiException){
+    } catch (e) {
+      if (e is UpiException) {
         // _showRoundedDialog(context,e.message);
         error(e.message.toString());
-      }else{
+      } else {
         error(e.toString());
       }
-
     }
   }
 }

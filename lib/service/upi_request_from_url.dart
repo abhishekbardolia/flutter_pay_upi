@@ -26,7 +26,7 @@ class UpiRequestFromUrl {
         tr = value;
       } else if (key == "am") {
         am = value;
-      }  else if (key == "cu") {
+      } else if (key == "cu") {
         cu = value;
       } else if (key == "intent://pay?pa") {
         pa = value;

@@ -21,10 +21,8 @@ class UpiApp {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is UpiApp && runtimeType == other.runtimeType && app == other.app;
+      other is UpiApp && runtimeType == other.runtimeType && app == other.app;
 
   @override
   int get hashCode => app.hashCode;
-
-
 }

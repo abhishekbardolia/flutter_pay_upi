@@ -1,2 +1,5 @@
 rootProject.name = 'flutter_pay_upi'
-include ':EasyUpiPayment'
+
+//include ":app"
+//include ":EasyUpiPayment"
+//project(":android/EasyUpiPayment").projectDir = file(".android/EasyUpiPayment")

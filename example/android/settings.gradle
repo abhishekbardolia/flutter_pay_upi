@@ -16,6 +16,5 @@ pluginManagement {
 }
 
 include ":app"
-include ':EasyUpiPayment'
 
 apply from: "${settings.ext.flutterSdkPath}/packages/flutter_tools/gradle/app_plugin_loader.gradle"

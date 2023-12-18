@@ -65,5 +65,4 @@ flutter {
 }
 
 dependencies {
-    implementation project(path: ':EasyUpiPayment')
 }

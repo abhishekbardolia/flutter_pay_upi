@@ -1,4 +1,4 @@
-enum ErrorPrefix{
+enum ErrorPrefix {
   appNotInstalled,
   invalidParameters,
   nullResponse,

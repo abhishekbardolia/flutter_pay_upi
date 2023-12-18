@@ -10,10 +10,10 @@ import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Build
 import android.util.Log
+
 import androidx.annotation.NonNull
 import dev.shreyaspatil.easyupipayment.EasyUpiPayment
 import dev.shreyaspatil.easyupipayment.listener.PaymentStatusListener
-import dev.shreyaspatil.easyupipayment.model.Payment
 import dev.shreyaspatil.easyupipayment.model.PaymentApp
 import dev.shreyaspatil.easyupipayment.model.TransactionDetails
 import dev.shreyaspatil.easyupipayment.model.TransactionStatus
@@ -26,6 +26,8 @@ import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import java.io.ByteArrayOutputStream
+import java.util.ArrayList
+import java.util.HashMap
 
 /** FlutterPayUpiPlugin */
 class FlutterPayUpiPlugin: FlutterPlugin, MethodCallHandler, PaymentStatusListener, ActivityAware {
@@ -80,30 +82,30 @@ class FlutterPayUpiPlugin: FlutterPlugin, MethodCallHandler, PaymentStatusListen
           "com.google.android.apps.nbu.paisa.user" -> PaymentApp.GOOGLE_PAY//
           "com.phonepe.app" -> PaymentApp.PHONE_PE//
           "net.one97.paytm" -> PaymentApp.PAYTM//
-          "com.upi.axispay" -> PaymentApp.AXIS//
-          "com.infrasofttech.centralbankupi" -> PaymentApp.CENT_BANK_UPI
-          "com.infra.boiupi" -> PaymentApp.BOI_UPI
-          "com.lcode.corpupi" -> PaymentApp.CORPORATION_BANK_UPI
-          "com.lcode.csbupi" -> PaymentApp.CSB_BANK_UPI
-          "com.dbs.in.digitalbank" -> PaymentApp.DIGIBANK
-          "com.equitasbank.upi" -> PaymentApp.EQUITAS_UPI
-          "com.freecharge.android" -> PaymentApp.FREECHARGE_UPI//
-          "com.mgs.hsbcupi" -> PaymentApp.HSBC_UPI
-          "com.csam.icici.bank.imobile" -> PaymentApp.ICICI_BANK
-          "com.lcode.smartz" -> PaymentApp.KARNATAK_UPI
-          "com.mgs.induspsp" -> PaymentApp.INDUS_PAY
-          "com.msf.kbank.mobile" -> PaymentApp.KOTAK_BANK
-          "com.hdfcbank.payzapp" -> PaymentApp.HDFC_BANK
-          "com.Version1" -> PaymentApp.PNB_ONE
-          "com.psb.omniretail" -> PaymentApp.PSB_BANK
-          "com.rblbank.mobank" -> PaymentApp.RBL_BANK
-          "com.sbi.upi" -> PaymentApp.SBI_BANK//
-          "com.lcode.ucoupi" -> PaymentApp.UCO_BANK
-          "com.ultracash.payment.customer" -> PaymentApp.ULTRA_CASH_CUSTOMER_UPI
-          "com.YesBank" -> PaymentApp.YES_BANK
-          "com.bankofbaroda.upi" -> PaymentApp.BOB
-          "com.myairtelapp" -> PaymentApp.AIRTEL_UPI
-          "com.dreamplug.androidapp" -> PaymentApp.CRED_UPI
+//          "com.upi.axispay" -> PaymentApp.AXIS//
+//          "com.infrasofttech.centralbankupi" -> PaymentApp.CENT_BANK_UPI
+//          "com.infra.boiupi" -> PaymentApp.BOI_UPI
+//          "com.lcode.corpupi" -> PaymentApp.CORPORATION_BANK_UPI
+//          "com.lcode.csbupi" -> PaymentApp.CSB_BANK_UPI
+//          "com.dbs.in.digitalbank" -> PaymentApp.DIGIBANK
+//          "com.equitasbank.upi" -> PaymentApp.EQUITAS_UPI
+//          "com.freecharge.android" -> PaymentApp.FREECHARGE_UPI//
+//          "com.mgs.hsbcupi" -> PaymentApp.HSBC_UPI
+//          "com.csam.icici.bank.imobile" -> PaymentApp.ICICI_BANK
+//          "com.lcode.smartz" -> PaymentApp.KARNATAK_UPI
+//          "com.mgs.induspsp" -> PaymentApp.INDUS_PAY
+//          "com.msf.kbank.mobile" -> PaymentApp.KOTAK_BANK
+//          "com.hdfcbank.payzapp" -> PaymentApp.HDFC_BANK
+//          "com.Version1" -> PaymentApp.PNB_ONE
+//          "com.psb.omniretail" -> PaymentApp.PSB_BANK
+//          "com.rblbank.mobank" -> PaymentApp.RBL_BANK
+//          "com.sbi.upi" -> PaymentApp.SBI_BANK//
+//          "com.lcode.ucoupi" -> PaymentApp.UCO_BANK
+//          "com.ultracash.payment.customer" -> PaymentApp.ULTRA_CASH_CUSTOMER_UPI
+//          "com.YesBank" -> PaymentApp.YES_BANK
+//          "com.bankofbaroda.upi" -> PaymentApp.BOB
+//          "com.myairtelapp" -> PaymentApp.AIRTEL_UPI
+//          "com.dreamplug.androidapp" -> PaymentApp.CRED_UPI
           else -> throw IllegalStateException("Unexpected value: ")
         }
 
@@ -119,7 +121,7 @@ class FlutterPayUpiPlugin: FlutterPlugin, MethodCallHandler, PaymentStatusListen
           this.transactionRefId = trref
           this.payeeMerchantCode = mc
           this.description = tn
-          this.currency=cu
+//          this.currency=cu
           this.amount = am
 
         }
