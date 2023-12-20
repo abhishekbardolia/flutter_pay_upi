@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
-
-import 'package:flutter/services.dart';
-import 'package:flutter_pay_upi/flutter_pay_upi.dart';
 
 import 'flutter_pay_upi.dart';
 
@@ -38,7 +34,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: FlutterPayUPI(),
+      home: const FlutterPayUPI(),
     );
   }
 }

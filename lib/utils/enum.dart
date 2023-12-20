@@ -1,8 +1,8 @@
-enum ErrorPrefix {
-  appNotInstalled,
-  invalidParameters,
-  nullResponse,
-  userCancelled,
-  activityMissing,
-  appGetFailed,
+
+enum IOSUPIPaymentApps {
+  amazonpay,
+  bhimupi,
+  googlepay,
+  paytm,
+  phonepe,
 }

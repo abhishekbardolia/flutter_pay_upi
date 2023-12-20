@@ -10,11 +10,11 @@ import 'model/upi_app_model.dart';
 import 'model/upi_response.dart';
 
 class FlutterPayUpiManager {
-  static Future<List<UpiApp>> getListOfAllUpiApps() async {
-    if (Platform.isAndroid) {
+  static Future<List<UpiApp>> getListOfAndroidUpiApps() async {
       return await GetUpiAppsAndroid().getUpiApps();
-    }
-    return [];
+  }
+  static Future<List<UpiApp>> getListOfAndroidUpiApps() async {
+      return await GetUpiAppsIos().getUpiApps();
   }
 
   static void startPayment({

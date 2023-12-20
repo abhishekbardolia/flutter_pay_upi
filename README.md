@@ -41,9 +41,8 @@ Add the plugin package to the `pubspec.yaml` file in your project:
 
 ```yaml
 dependencies:
-  flutter_pay_upi: ^0.1.0
+  flutter_pay_upi: ^0.1.1 // Just add this dependency and see the magic
 ```
-
 Install the new dependency:
 
 ```sh
@@ -75,6 +74,72 @@ To get all the Upi apps:
       });
 
 ```
+
+# Understanding code
+
+enum used here is for UpiExceptionType you don't need to worry Just add `e.toString()` in error. This will print errors.
+
+```
+enum UpiExceptionType {
+  /// when transaction is cancelled by the user.
+  cancelledException,
+
+  /// when transaction failed
+  failedException,
+
+  /// Transaction is in PENDING state. Money might get deducted from user’s account but not yet deposited in payee’s account.
+  submittedException,
+
+  /// Transaction is in PENDING state. Money might get deducted from user’s account but not yet deposited in payee’s account.
+  appNotFoundException,
+
+  /// when unknown exception occurs
+  unknownException,
+}
+
+```
+
+Note: If you want inbuilt gridview. just add this code:
+```dart
+UPIAppList(onClick: (upiApp) async {
+    
+   FlutterPayUpiManager.startPayment(
+    paymentApp: upiApp.app!,
+    payeeVpa: payeeVpa!,
+    payeeName: payeeName!,
+    transactionId: transactionId!,
+    payeeMerchantCode: payeeMerchantCode!,
+    description: description!,
+    amount: amount!,
+    response: (UpiResponse response) {
+      // TODO: add your success logic here
+    },
+    error: (e) {
+      // TODO: add your exception logic here
+      print(e.toString());
+    });
+                    
+}),
+```
+
+# Behaviour, Limitations & Measures
+
+Android
+
+Flow
+
+* On Android, UPI Deep Linking and Proximity Integration is achieved using Intents.
+* When initiating a transaction, an Intent call is made with transaction details, specifying the UPI app to use.
+* After processing the UPI transaction in the chosen app, it sends back a response following the specification format.
+* The Android plugin layer of the package handles this response.
+* The plugin layer parses the response to create a UpiResponse object.
+* This object clearly indicates the status of the UPI payment—whether it was successful, failed, or is still being processed.
+* The UpiResponse object is then returned to your calling code for further handling.
+
+Measure
+
+It's recommended to add an extra layer of security by setting up a server-side payment check. This helps protect against potential issues or hacks in the UPI transaction process on the user's phone.
+
 
 ## Supported Apps
 * Amazon Pay

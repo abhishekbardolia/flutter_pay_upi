@@ -1,10 +1,15 @@
 import 'package:flutter/services.dart';
 
+import '../model/ios_upi_app.dart';
+import '../model/upi_ios_model.dart';
 import 'flutter_native_upi.dart';
 import '../model/upi_app_model.dart';
 
 abstract class GetUpiApps {
   Future<List<UpiApp>> getUpiApps();
+}
+abstract class GetIosUpiApps {
+  Future<List<UPIIOSModel>> getUpiApps();
 }
 
 class GetUpiAppsAndroid extends GetUpiApps {
@@ -20,9 +25,10 @@ class GetUpiAppsAndroid extends GetUpiApps {
   }
 }
 
-class GetUpiAppsiOS implements GetUpiApps {
+class GetUpiAppsiOS implements GetIosUpiApps {
   @override
-  Future<List<UpiApp>> getUpiApps() async {
-    return [];
+  Future<List<UPIIOSModel>> getUpiApps() async {
+    List<UPIIOSModel> upiList=iosUPIApps;
+    return upiList;
   }
 }

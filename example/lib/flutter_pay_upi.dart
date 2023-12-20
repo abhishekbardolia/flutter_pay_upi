@@ -65,7 +65,7 @@ class _FlutterPayUPIState extends State<FlutterPayUPI> {
                   child: UPIAppList(onClick: (upiApp) async {
                     if (_formKey.currentState!.validate()) {
                       FlutterPayUpiManager.startPayment(
-                          paymentApp: upiApp.app!,
+                          paymentApp: upiApp!,
                           payeeVpa: payeeVpa!,
                           payeeName: payeeName!,
                           transactionId: transactionId!,
