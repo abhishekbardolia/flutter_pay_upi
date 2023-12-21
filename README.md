@@ -41,7 +41,7 @@ Add the plugin package to the `pubspec.yaml` file in your project:
 
 ```yaml
 dependencies:
-  flutter_pay_upi: ^0.1.1 // Just add this dependency and see the magic
+  flutter_pay_upi: ^0.2.0 // Just add this dependency and see the magic
 ```
 Install the new dependency:
 
