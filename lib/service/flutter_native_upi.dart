@@ -86,6 +86,7 @@ class FlutterNativeUpi {
               app['packageName'] == "com.phonepe.app" ||
               app['packageName'] == "in.amazon.mShop.android.shopping" ||
               app['packageName'] == "net.one97.paytm"
+      ///Coming soon
           // app['packageName'] == "com.freecharge.android" ||
           // app['packageName'] == "com.axis.mobile" ||
           // app['packageName'] == "com.infrasofttech.centralbankupi" ||
@@ -122,14 +123,26 @@ class FlutterNativeUpi {
   Future<String> initiateTransactioniOS(String? url) async {
     try {
       final result = await _channel.invokeMethod(
-        'launch',
+        'initiateTransaction',
         {
           'uri': url,
         },
       );
       return result == true
           ? "Successfully Launched App!"
-          : "Something went wrong!";
+          : "Please install app!";
+    } catch (error) {
+      throw Exception(error);
+    }
+  }
+  Future<void> navigateToAppstore(String? url) async {
+    try {
+      await _channel.invokeMethod(
+        'navigateToAppstore',
+        {
+          'uri': url,
+        },
+      );
     } catch (error) {
       throw Exception(error);
     }

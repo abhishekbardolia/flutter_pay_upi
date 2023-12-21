@@ -9,7 +9,7 @@ abstract class GetUpiApps {
   Future<List<UpiApp>> getUpiApps();
 }
 abstract class GetIosUpiApps {
-  Future<List<UPIIOSModel>> getUpiApps();
+  Future<List<UpiIosModel>> getUpiApps();
 }
 
 class GetUpiAppsAndroid extends GetUpiApps {
@@ -27,8 +27,8 @@ class GetUpiAppsAndroid extends GetUpiApps {
 
 class GetUpiAppsiOS implements GetIosUpiApps {
   @override
-  Future<List<UPIIOSModel>> getUpiApps() async {
-    List<UPIIOSModel> upiList=iosUPIApps;
+  Future<List<UpiIosModel>> getUpiApps() async {
+    List<UpiIosModel> upiList=iosUPIApps;
     return upiList;
   }
 }

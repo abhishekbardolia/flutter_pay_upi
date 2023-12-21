@@ -19,7 +19,7 @@ class UPIAppList extends StatefulWidget {
 class _UPIAppListState extends State<UPIAppList> {
   @override
   Widget build(BuildContext context) {
-    if(Platform.isAndroid) {
+    if (Platform.isAndroid) {
       return FutureBuilder<List<UpiApp>>(
           future: FlutterPayUpiManager.getListOfAndroidUpiApps(),
           builder: (context, snapshot) {
@@ -67,7 +67,7 @@ class _UPIAppListState extends State<UPIAppList> {
             }
             return Container();
           });
-    }else{
+    } else {
       return GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3,
@@ -88,9 +88,10 @@ class _UPIAppListState extends State<UPIAppList> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Image.asset(
+                      // iosUPIApps[index].appIcon!,
                       iosUPIApps[index].appIcon!,
-                      width: 40,
-                      height: 40,
+                      width: 60,
+                      height: 60, package: "flutter_pay_upi",
                     ),
                     SizedBox(height: 10),
                     Text(

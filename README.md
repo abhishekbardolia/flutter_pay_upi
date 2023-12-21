@@ -1,5 +1,5 @@
 
-# flutter_pay_upi (iOS version coming soon)
+# flutter_pay_upi
 
 <p align="center">
   <a href="https://twitter.com/abhibardolia94">
@@ -22,7 +22,7 @@ To see exactly how to use this plugin, check out the example in the "Example" se
 
 <img src="https://github.com/abhishekbardolia/flutter_pay_upi/assets/21007272/bc0be994-9c65-46d5-9e67-16e122c6be61" width="200" />
 
-<img src="https://github.com/abhishekbardolia/flutter_pay_upi/assets/21007272/6629a046-c8ab-448a-b2bd-e57302a9e20d" width="200" />
+<img src="https://github.com/abhishekbardolia/flutter_pay_upi/assets/21007272/cfc7cbd8-aed3-4526-8e12-102cdf854d6e" width="200" />
 
 # Important Note
 
@@ -30,7 +30,7 @@ Apps like Google Pay, PhonePe, and Paytm might not be able to complete your tran
 
 *Note:* Remember to use only business UPI accounts. You can't send money to personal UPI accounts. Stick to business accounts for your transactions.
 
-# System requirements
+# pubspec.yaml
 * sdk: '>=3.1.5 <4.0.0'
 * flutter: >=3.3.0
 * Android: min sdk 19
@@ -48,14 +48,71 @@ Install the new dependency:
 ```sh
 flutter pub get
 ```
-# Android
+# Android Configuration
 
 To get all the Upi apps:
 
 ```getupi
-    List<UpiApp> androidUpiList = await FlutterPayUpiManager.getListOfAllUpiApps();
+    List<UpiApp> androidUpiList = await FlutterPayUpiManager.getListOfAndroidUpiApps();
 ```
 
+# iOS Configuration
+
+To get all the Upi apps:
+
+```
+    List<UpiIosModel> androidUpiList = await FlutterPayUpiManager.getListOfIosUpiApps();
+```
+
+Mandatory:
+
+Implement in your `info.plist`:
+
+```
+
+	<key>LSApplicationQueriesSchemes</key>
+    	<array>
+    		<string>phonepe</string>
+    		<string>tez</string>
+    		<string>paytm</string>
+    		<string>gpay</string>
+    		<string>BHIM</string>
+    	</array>
+```
+
+and Lifecyle in your widget:
+
+```
+class FlutterPayUPI extends StatefulWidget {
+  const FlutterPayUPI({super.key});
+
+  @override
+  _FlutterPayUPIState createState() => _FlutterPayUPIState();
+}
+
+class _FlutterPayUPIState extends State<FlutterPayUPI> with WidgetsBindingObserver {
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+ @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      if (Platform.isIOS) {
+        ///Develop a method to verify transactions, as iOS does not provide an
+        ///immediate response upon successful payment. The verification process
+        ///involves checking the method when the application regains focus to
+        ///determine whether the transaction was successful.
+      }
+    }
+  }
+}
+```
+
+*Note:* Make a method to check if a payment was successful on iOS because iOS doesn't give an immediate response when a payment goes through. You can do this by checking the method when you return to the app to see if the payment worked.
 # Start Payment
 
 ```dart
@@ -140,6 +197,22 @@ Measure
 
 It's recommended to add an extra layer of security by setting up a server-side payment check. This helps protect against potential issues or hacks in the UPI transaction process on the user's phone.
 
+iOS
+
+Flow
+
+* Each UPI payment app can respond to a payment request with a format like "upi://pay?..." sent by another app on iOS.
+* The specification doesn't let you specify which UPI app to use in the request.
+* iOS doesn't provide a way to choose a specific UPI app or to know which one will be used.
+* When you send the request, one of the installed UPI apps on the iPhone will handle it and process the payment.
+* Unfortunately, the system doesn't allow the UPI app to inform your code about the transaction status.
+* Your code can only determine if the UPI app was successfully launched or not.
+
+Measures
+
+* Implement payment verification on the existing package functionality.
+* Distinguish between discovered and supported-only apps using the mentioned method.
+* Use the [Example](https://github.com/abhishekbardolia/flutter_pay_upi/tree/main/example) as a reference.
 
 ## Supported Apps
 * Amazon Pay

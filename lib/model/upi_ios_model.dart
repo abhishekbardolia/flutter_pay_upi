@@ -1,14 +1,10 @@
-import '../utils/enum.dart';
 
-class UPIIOSModel {
+
+class UpiIosModel {
   String? appName;
   String? appIcon;
-  String? freechargeTransactionIDFromApp;
-  IOSUPIPaymentApps? appOptionEnum;
 
-  UPIIOSModel(
+  UpiIosModel(
       {this.appName,
-        this.appIcon,
-        this.freechargeTransactionIDFromApp,
-        this.appOptionEnum});
+        this.appIcon});
 }

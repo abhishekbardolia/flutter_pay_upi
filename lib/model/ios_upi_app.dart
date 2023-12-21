@@ -1,32 +1,21 @@
 
 import 'package:flutter_pay_upi/model/upi_ios_model.dart';
 
-import '../utils/enum.dart';
 
-final List<UPIIOSModel> iosUPIApps = [
-  UPIIOSModel(
+final List<UpiIosModel> iosUPIApps = [
+  UpiIosModel(
       appName: 'Amazon Pay',
-      appIcon: 'assets/amazon_pay.png',
-      freechargeTransactionIDFromApp: "Amazon Pay",
-      appOptionEnum: IOSUPIPaymentApps.amazonpay),
-  UPIIOSModel(
-      appName: 'BHIMUPI',
-      appIcon: 'assets/bhim_logo.png',
-      freechargeTransactionIDFromApp: "Bhim",
-      appOptionEnum: IOSUPIPaymentApps.bhimupi),
-  UPIIOSModel(
+      appIcon: 'images/amazon_pay.png',),
+  UpiIosModel(
+      appName: 'BhimUpi',
+      appIcon: 'images/bhim_logo.png',),
+  UpiIosModel(
       appName: 'Google Pay',
-      appIcon: "assets/gpay_logo.png",
-      freechargeTransactionIDFromApp: "Google Pay",
-      appOptionEnum: IOSUPIPaymentApps.googlepay),
-  UPIIOSModel(
+      appIcon: "images/gpay_logo.png",),
+  UpiIosModel(
       appName: 'Paytm',
-      appIcon: "assets/paytm_logo.png",
-      freechargeTransactionIDFromApp: "Paytm",
-      appOptionEnum: IOSUPIPaymentApps.paytm),
-  UPIIOSModel(
+      appIcon: "images/paytm_logo.png",),
+  UpiIosModel(
       appName: 'PhonePe',
-      appIcon: "assets/phone_pe.png",
-      freechargeTransactionIDFromApp: "PhonePe",
-      appOptionEnum: IOSUPIPaymentApps.phonepe),
+      appIcon: "images/phone_pe.png",),
 ];

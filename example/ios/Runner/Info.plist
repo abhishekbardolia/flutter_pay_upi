@@ -45,5 +45,13 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>LSApplicationQueriesSchemes</key>
+    	<array>
+    		<string>phonepe</string>
+    		<string>tez</string>
+    		<string>paytm</string>
+    		<string>gpay</string>
+    		<string>BHIM</string>
+    	</array>
 </dict>
 </plist>

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_pay_upi/flutter_pay_upi_manager.dart';
@@ -11,7 +13,7 @@ class FlutterPayUPI extends StatefulWidget {
   _FlutterPayUPIState createState() => _FlutterPayUPIState();
 }
 
-class _FlutterPayUPIState extends State<FlutterPayUPI> {
+class _FlutterPayUPIState extends State<FlutterPayUPI> with WidgetsBindingObserver {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   String? paymentApp;
   String? payeeVpa;
@@ -25,6 +27,7 @@ class _FlutterPayUPIState extends State<FlutterPayUPI> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
   }
 
   @override
@@ -72,8 +75,8 @@ class _FlutterPayUPIState extends State<FlutterPayUPI> {
                           payeeMerchantCode: payeeMerchantCode!,
                           description: description!,
                           amount: amount!,
-                          response: (UpiResponse response) {
-                            _showTransactionDetailsDialog(response);
+                          response: (UpiResponse response, String amount) {
+                            _showTransactionDetailsDialog(response, amount);
                           },
                           error: (e) {
                             _showRoundedDialog(context, e.toString());
@@ -172,7 +175,8 @@ class _FlutterPayUPIState extends State<FlutterPayUPI> {
     );
   }
 
-  void _showTransactionDetailsDialog(UpiResponse upiRequestParams) {
+  void _showTransactionDetailsDialog(
+      UpiResponse upiRequestParams, String amount) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -187,7 +191,7 @@ class _FlutterPayUPIState extends State<FlutterPayUPI> {
             _buildDetailRow(
                 'Txn Ref Id', upiRequestParams.transactionReferenceId ?? "N/A"),
             _buildDetailRow('Status', upiRequestParams.status ?? "N/A"),
-            _buildDetailRow('Amount', upiRequestParams.status ?? "N/A"),
+            _buildDetailRow('Amount', amount),
           ],
         );
       },
@@ -211,5 +215,18 @@ class _FlutterPayUPIState extends State<FlutterPayUPI> {
         ],
       ),
     );
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      // isLoading
+      if (Platform.isIOS) {
+        ///Develop a method to verify transactions, as iOS does not provide an
+        ///immediate response upon successful payment. The verification process
+        ///involves checking the method when the application regains focus to
+        ///determine whether the transaction was successful.
+      }
+    }
   }
 }
