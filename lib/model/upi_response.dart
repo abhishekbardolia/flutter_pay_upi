@@ -1,3 +1,14 @@
+/// Represents the response received after a UPI (Unified Payments Interface) transaction.
+///
+/// This class includes fields such as transaction ID, response code, approval reference number,
+/// transaction status, and transaction reference ID. Instances of this class can be created using
+/// the [UpiResponse.fromResponseString] factory method, which parses a response string and builds
+/// an instance of [UpiResponse].
+///
+/// Example Usage:
+/// ```dart
+/// UpiResponse upiResponse = UpiResponse.fromResponseString(responseString);
+/// ```
 class UpiResponse {
   String? transactionID;
   String? responseCode;
@@ -13,6 +24,13 @@ class UpiResponse {
     transactionReferenceId = builder.transactionReferenceId;
   }
 
+  /// Factory method to create an instance of [UpiResponse] from a UPI response string.
+  ///
+  /// Parameters:
+  /// - [responseString]: The UPI response string received after a transaction.
+  ///
+  /// Returns:
+  /// An instance of [UpiResponse] with parsed information from the response string.
   factory UpiResponse.fromResponseString(String responseString) {
     final builder = UpiResponseBuilder();
 
@@ -27,6 +45,7 @@ class UpiResponse {
   }
 }
 
+/// A builder class for constructing [UpiResponse] from a UPI response string.
 class UpiResponseBuilder {
   String? transactionID;
   String? responseCode;
@@ -67,11 +86,13 @@ class UpiResponseBuilder {
     }
   }
 
+  /// Builds and returns the final [UpiResponse] instance.
   UpiResponse build() {
     return UpiResponse._builder(this);
   }
 }
 
+/// Constants representing UPI payment status values.
 class UpiPaymentStatus {
   static const String SUCCESS = 'success';
   static const String SUBMITTED = 'submitted';

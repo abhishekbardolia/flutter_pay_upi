@@ -30,18 +30,40 @@ Apps like Google Pay, PhonePe, and Paytm might not be able to complete your tran
 
 *Note:* Remember to use only business UPI accounts. You can't send money to personal UPI accounts. Stick to business accounts for your transactions.
 
-# pubspec.yaml
-* sdk: '>=3.1.5 <4.0.0'
-* flutter: >=3.3.0
-* Android: min sdk 19
+## Platform Support
+
+| Android | iOS |
+| :--: | :-: |
+|   ✔️    | ✔️  |
+
 
 # Getting started
 
 Add the plugin package to the `pubspec.yaml` file in your project:
 
 ```yaml
+name: flutter_pay_upi
+description: A Flutter plugin for integrating UPI (Unified Payments Interface) payments in your Flutter app.
+
+version: 0.2.1
+
+environment:
+  sdk: '>=3.1.5 <4.0.0'
+  flutter: '>=3.3.0'
+
 dependencies:
-  flutter_pay_upi: ^0.2.0 // Just add this dependency and see the magic
+  flutter_pay_upi: ^0.2.1 // Just add this dependency and see the magic.
+
+flutter:
+  plugin:
+    androidPackage: com.example.flutterpayupi
+    iosPrefix: FLT
+
+  platforms:
+    android:
+      minSdkVersion: 19
+
+
 ```
 Install the new dependency:
 
@@ -159,23 +181,21 @@ enum UpiExceptionType {
 Note: If you want inbuilt gridview. just add this code:
 ```dart
 UPIAppList(onClick: (upiApp) async {
-    
-   FlutterPayUpiManager.startPayment(
-    paymentApp: upiApp.app!,
-    payeeVpa: payeeVpa!,
-    payeeName: payeeName!,
-    transactionId: transactionId!,
-    payeeMerchantCode: payeeMerchantCode!,
-    description: description!,
-    amount: amount!,
-    response: (UpiResponse response) {
-      // TODO: add your success logic here
-    },
-    error: (e) {
-      // TODO: add your exception logic here
-      print(e.toString());
-    });
-                    
+    FlutterPayUpiManager.startPayment(
+        paymentApp: upiApp.app!,
+        payeeVpa: payeeVpa!,
+        payeeName: payeeName!,
+        transactionId: transactionId!,
+        payeeMerchantCode: payeeMerchantCode!,
+        description: description!,
+        amount: amount!,
+        response: (UpiResponse response) {
+          // TODO: add your success logic here
+        },
+        error: (e) {
+          // TODO: add your exception logic here
+        print(e.toString());
+        });
 }),
 ```
 

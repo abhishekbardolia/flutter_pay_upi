@@ -1,11 +1,29 @@
 import 'package:flutter/services.dart';
 
+/// Exception class for handling UPI (Unified Payments Interface) related errors.
+///
+/// This class extends the built-in `Exception` class and provides specific
+/// exception types for various UPI transaction scenarios.
 class UpiException implements Exception {
+  /// The type of UPI exception.
   final UpiExceptionType type;
+
+  /// A human-readable message providing more information about the exception.
   final String? message;
+
+  /// Additional details related to the exception.
   final dynamic details;
+
+  /// The stack trace associated with the exception.
   final String? stacktrace;
 
+  /// Creates an instance of [UpiException].
+  ///
+  /// Parameters:
+  /// - [type]: The type of UPI exception.
+  /// - [message]: A human-readable message providing more information about the exception.
+  /// - [details]: Additional details related to the exception.
+  /// - [stacktrace]: The stack trace associated with the exception.
   UpiException({
     required this.type,
     required this.message,
@@ -13,6 +31,10 @@ class UpiException implements Exception {
     required this.stacktrace,
   });
 
+  /// Factory method to create an instance of [UpiException] from a [PlatformException].
+  ///
+  /// Parameters:
+  /// - [exception]: The platform exception to convert to a UPI exception.
   factory UpiException.fromException(PlatformException exception) {
     UpiExceptionType type;
 
@@ -43,19 +65,21 @@ class UpiException implements Exception {
   }
 }
 
+/// Enum representing different types of UPI exceptions.
 enum UpiExceptionType {
-  /// when transaction is cancelled by the user.
+  /// Transaction is cancelled by the user.
   cancelledException,
 
-  /// when transaction failed
+  /// Transaction failed.
   failedException,
 
-  /// Transaction is in PENDING state. Money might get deducted from user’s account but not yet deposited in payee’s account.
+  /// Transaction is in PENDING state. Money might get deducted from the user’s account
+  /// but not yet deposited in the payee’s account.
   submittedException,
 
-  /// Transaction is in PENDING state. Money might get deducted from user’s account but not yet deposited in payee’s account.
+  /// App for UPI transaction not found.
   appNotFoundException,
 
-  /// when unknown exception occurs
+  /// Unknown exception during UPI transaction.
   unknownException,
 }

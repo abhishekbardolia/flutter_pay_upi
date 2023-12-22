@@ -1,10 +1,6 @@
-
-
 class UpiIosModel {
   String? appName;
   String? appIcon;
 
-  UpiIosModel(
-      {this.appName,
-        this.appIcon});
+  UpiIosModel({this.appName, this.appIcon});
 }

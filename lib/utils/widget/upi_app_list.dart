@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_pay_upi/model/upi_ios_model.dart';
 
 import '../../flutter_pay_upi_manager.dart';
 import '../../model/ios_upi_app.dart';
@@ -25,7 +24,7 @@ class _UPIAppListState extends State<UPIAppList> {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 3,
                   crossAxisSpacing: 8.0,
                   mainAxisSpacing: 8.0,
@@ -51,7 +50,7 @@ class _UPIAppListState extends State<UPIAppList> {
                             SizedBox(height: 10),
                             Text(
                               snapshot.data![index].name!,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -69,7 +68,7 @@ class _UPIAppListState extends State<UPIAppList> {
           });
     } else {
       return GridView.builder(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3,
           crossAxisSpacing: 8.0,
           mainAxisSpacing: 8.0,
@@ -96,7 +95,7 @@ class _UPIAppListState extends State<UPIAppList> {
                     SizedBox(height: 10),
                     Text(
                       iosUPIApps[index].appName!,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
                       ),

@@ -1,4 +1,13 @@
-## 0.2.0
+## 0.2.1
+
+### Added
+
+- Support for the latest Flutter version.
+- Additional features for improved user experience.
+- Bug fixes and performance enhancements.
+
+
+## [Version 0.2.0] - 2023-12-20
 
 ### Added
 

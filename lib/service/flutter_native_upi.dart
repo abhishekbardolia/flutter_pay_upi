@@ -4,11 +4,25 @@ import 'package:flutter_pay_upi/utils/exception.dart';
 import '../model/upi_app_model.dart';
 import '../model/upi_response.dart';
 
+/// A Flutter Native UPI (Unified Payments Interface) manager for handling UPI transactions.
+///
+/// This class encapsulates methods to initiate UPI transactions, retrieve a list of UPI apps,
+/// and launch UPI apps on both Android and iOS platforms. It uses platform channels to
+/// communicate with native code for UPI transaction initiation and app navigation.
 class FlutterNativeUpi {
+  /// The method channel used for communication between Flutter and native code.
   final MethodChannel _channel;
 
+  /// Creates an instance of [FlutterNativeUpi] with the provided method channel.
   FlutterNativeUpi(this._channel);
 
+  /// Initiates a UPI transaction with the given [upiRequestParams].
+  ///
+  /// Parameters:
+  /// - [upiRequestParams]: The parameters required for initiating a UPI transaction.
+  ///
+  /// Returns:
+  /// A [Future] that completes with the UPI response.
   Future<UpiResponse> initiateTransaction(
       UPIRequestParameters upiRequestParams) async {
     try {
@@ -77,6 +91,11 @@ class FlutterNativeUpi {
     }
   }
 
+  /// Retrieves a list of UPI apps available on the device.
+  ///
+  /// Returns:
+  /// A [Future] that completes with a list of UPI apps.
+  ///
   Future<List<UpiApp>> getAllUpiApps() async {
     final List<Map>? apps = await _channel.invokeListMethod<Map>('allUPIApps');
     List<UpiApp> upiIndiaApps = [];
@@ -86,7 +105,8 @@ class FlutterNativeUpi {
               app['packageName'] == "com.phonepe.app" ||
               app['packageName'] == "in.amazon.mShop.android.shopping" ||
               app['packageName'] == "net.one97.paytm"
-      ///Coming soon
+
+          ///Coming soon
           // app['packageName'] == "com.freecharge.android" ||
           // app['packageName'] == "com.axis.mobile" ||
           // app['packageName'] == "com.infrasofttech.centralbankupi" ||
@@ -120,6 +140,13 @@ class FlutterNativeUpi {
     return upiIndiaApps;
   }
 
+  /// Initiates a UPI transaction on iOS with the provided URL.
+  ///
+  /// Parameters:
+  /// - [url]: The URL for initiating the UPI transaction on iOS.
+  ///
+  /// Returns:
+  /// A [Future] that completes with the result of the transaction initiation.
   Future<String> initiateTransactioniOS(String? url) async {
     try {
       final result = await _channel.invokeMethod(
@@ -135,6 +162,14 @@ class FlutterNativeUpi {
       throw Exception(error);
     }
   }
+
+  /// Navigates to the App Store to download the specified UPI payment app.
+  ///
+  /// Parameters:
+  /// - [url]: The App Store URL for the UPI payment app.
+  ///
+  /// Returns:
+  /// A [Future] that completes after navigating to the App Store.
   Future<void> navigateToAppstore(String? url) async {
     try {
       await _channel.invokeMethod(
@@ -148,6 +183,13 @@ class FlutterNativeUpi {
     }
   }
 
+  /// Converts the provided [amount] to a valid decimal format.
+  ///
+  /// Parameters:
+  /// - [amount]: The amount to be converted.
+  ///
+  /// Returns:
+  /// A [String] representing the valid decimal format of the amount.
   String makeDecimal(String amount) {
     if (isValidDecimal(amount)) {
       try {
@@ -167,6 +209,13 @@ class FlutterNativeUpi {
     }
   }
 
+  /// Checks if the provided [input] is a valid decimal.
+  ///
+  /// Parameters:
+  /// - [input]: The input string to be checked.
+  ///
+  /// Returns:
+  /// A [bool] indicating whether the input is a valid decimal.
   bool isValidDecimal(String input) {
     RegExp decimalRegExp = RegExp(r'^\d*\.?\d+$');
     return decimalRegExp.hasMatch(input);

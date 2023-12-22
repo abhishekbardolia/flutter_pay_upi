@@ -13,7 +13,8 @@ class FlutterPayUPI extends StatefulWidget {
   _FlutterPayUPIState createState() => _FlutterPayUPIState();
 }
 
-class _FlutterPayUPIState extends State<FlutterPayUPI> with WidgetsBindingObserver {
+class _FlutterPayUPIState extends State<FlutterPayUPI>
+    with WidgetsBindingObserver {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   String? paymentApp;
   String? payeeVpa;
